@@ -50,6 +50,8 @@ Vue.component('reset-password-form', require('./components/auth/ResetPasswordFor
 
 Vue.component('dashboard-small-box', require('./components/dashboard/SmallBox.vue'))
 Vue.component('dashboard-increase-button', require('./components/dashboard/IncreaseButton.vue'))
+Vue.component('graph', require('./components/Graph.vue'))
+Vue.component('activity-feed', require('./components/dashboard/ActivityFeed.vue'))
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -63,7 +65,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '06d5f8319089048cd234',
+    key: '0a2f72aaea1144f712d1',
     cluster: 'eu',
     encrypted: true
 });

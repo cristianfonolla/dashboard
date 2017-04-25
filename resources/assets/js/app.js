@@ -11,13 +11,15 @@ window.Vue = require('vue');
 
 import Vue2Filters from 'vue2-filters'
 
+// require('./chartjsdemo.js')
+
 window.Vue.use(Vue2Filters)
 
 import VueEcho from 'vue-echo';
 
 Vue.use(VueEcho, {
   broadcaster: 'pusher',
-  key: '06d5f8319089048cd234',
+  key: '0a2f72aaea1144f712d1',
   cluster: 'eu',
   encrypted: true
 });

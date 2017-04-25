@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\Task;
+use App\Thread;
+use Cache;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,22 +18,46 @@ class DashboardController extends Controller
     public function index()
     {
         $data = [];
+        $data['labels1'] = "['Gener', 'Febrer','Març']";
+        $data['values1'] = "[25,50,5]";
         return view('dashboard',$data);
     }
 
     public function tasks()
     {
+        //Cache
         return Task::all();
     }
 
     public function tasksNumber()
     {
-        return Task::all()->count();
+        $value = Cache::remember('tasksNumber', 5, function (){
+            // IF cache MISS
+            return Task::all()->count();
+        });
+        return $value;
     }
+
+    public function threadsNumber()
+    {
+        return Thread::all()->count();
+    }
+
+    // pubf threadsNumber, etc
 
     public function createRandomTask()
     {
         factory(\App\Task::class)->states('user')->create();
+    }
+
+    public function createRandomThread()
+    {
+        factory(\App\Thread::class)->create();
+    }
+
+    public function fetchActivityFeed()
+    {
+        return Activity::orderbyDesc('updated_at')->get();
     }
 
 }
